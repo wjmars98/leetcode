@@ -1,0 +1,34 @@
+import java.util.List;
+
+/*
+ * @lc app=leetcode.cn id=24 lang=java
+ *
+ * [24] 两两交换链表中的节点
+ */
+
+// @lc code=start
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    /*
+        递归出口为末尾节点为null，或者末尾节点.next为null(奇偶两种情况)
+        单次递归过程为，1，2节点互换，2节点指向1，1节点指向3的递归
+    */
+    public ListNode swapPairs(ListNode head) {
+        if (head==null || head.next==null) return head;
+        ListNode next = head.next;
+        head.next = swapPairs(next.next);
+        next.next = head;
+        return next;
+    }
+}
+// @lc code=end
+
